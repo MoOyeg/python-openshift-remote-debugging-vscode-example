@@ -36,6 +36,12 @@ Repo provides an example of remote debugging a Python Application(Flask) on Kube
     ```bash
     oc new-app https://github.com/MoOyeg/testFlask.git --name=$APP_NAME -l app=testflask --env=REMOTE_DEBUG="true" --env=DEBUG_PORT=5679 -n $NAMESPACE_DEV --strategy=docker
     ```
+    
+- **If the previous command gives this error -  error: unable to locate any images in image streams, local docker images with name "image-registry.openshift-image-registry.svc:5000/openshift/ubi8"**
+    ```bash
+    oc tag --source=docker registry.redhat.io/ubi8/ubi:latest ubi8:latest -n openshift
+    ```
+    
 - **Expose the service to the outside world with an openshift route**
 
     ```bash
